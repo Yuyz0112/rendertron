@@ -108,7 +108,7 @@ class Renderer {
       // Set a virtual time budget of 10 seconds. This 10 second timer is paused while there are
       // any active network requests. This allows for a maximum of 10 seconds in script/rendering
       // time. Once the page is idle, the virtual time budget expires immediately.
-      let currentTimeBudget = 10000;
+      let currentTimeBudget = 30000;
       Emulation.setVirtualTimePolicy({policy: 'pauseIfNetworkFetchesPending', budget: currentTimeBudget});
 
       let budgetExpired = async() => {
@@ -142,7 +142,7 @@ class Renderer {
           Page load event fired: ${pageLoadEventFired}
           Outstanding network requests: ${outstandingRequests.size}`);
         budgetExpired();
-      }, 10000);
+      }, 30000);
 
       // Listen for the message that signals that rendering event was fired.
       Console.messageAdded((event) => {
